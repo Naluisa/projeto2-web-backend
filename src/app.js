@@ -18,7 +18,12 @@ mongoose.connect(
 );
 
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    origin: "https://yuki-hirako.github.io/projeto2-web/",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+};
+
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(routs);
 
