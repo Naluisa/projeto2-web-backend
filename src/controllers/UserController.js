@@ -64,4 +64,17 @@ module.exports = {
             res.status(200).json({ token: token });
         }
     },
+
+    async verify(req, res) {
+        const token = req.cookies.token;
+
+        if (!token) return res.status(401).json({ error: "Access Denied" });
+
+        try {
+            const verified = jwt.verify(token, "secret");
+            res.status(200).json({ success: true });
+        } catch (err) {
+            res.status(400).json({ error: "invalid token" });
+        }
+    },
 };

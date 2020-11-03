@@ -5,6 +5,7 @@ const routs = Router();
 
 routs.post("/cadastro", UserController.store);
 routs.post("/login", UserController.login);
+routs.get("/verifyToken", UserController.verify);
 //routs.post("/commonRoute", verifyCommon, UserController.asj);
 //routs.post("/admin", verifyAdmin, UserController.asisaji);
 //routs.get("/protected", verifyToken, UserController.protectedRoute);
