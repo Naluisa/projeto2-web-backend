@@ -31,7 +31,7 @@ module.exports = {
     async login(req, res) {
         const { userName, password } = req.body;
         if (!userName || !password) {
-            res.status(400).send("Preencha todos os campos");
+            res.status(400).json({ error: "Preencha todos os campos" });
         }
 
         const user = await User.findOne({ userName });
