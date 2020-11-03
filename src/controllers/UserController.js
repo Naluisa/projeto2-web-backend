@@ -50,18 +50,18 @@ module.exports = {
             res.status(400).json({ error: "Usuário nao encontrado" });
         }
 
-        if (user.password !== req.body.password) {
+        if (user.password !== password) {
             res.status(400).json({ error: "Senha nao bate" });
+        } else {
+            const token = jwt.sign(
+                {
+                    userName,
+                    userType: user.userType,
+                },
+                "secret"
+            );
+            res.cookie("token", token);
+            res.status(200).json({ token: token });
         }
-
-        const token = jwt.sign(
-            {
-                userName,
-                userType: user.userType,
-            },
-            "secret"
-        );
-        res.cookie("token", token);
-        res.status(200).json({ token: token });
     },
 };
