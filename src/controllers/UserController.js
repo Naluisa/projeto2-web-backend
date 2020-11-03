@@ -6,19 +6,21 @@ module.exports = {
         const { userName, email, password, userType } = req.body;
 
         if (!userName || !email || !password) {
-            res.status(400).send("Preencha todos os campos");
+            res.status(400).json({ error: "Preencha todos os campos" });
         }
 
         const users = await User.find({}).exec();
 
         if (users.filter((user) => user.userName === userName).length) {
-            res.status(400).send("Foi encontrado um user com mesmo login");
+            res.status(400).json({
+                error: "Foi encontrado um user com mesmo login",
+            });
         }
         if (users.filter((user) => user.email === email).length) {
-            res.status(400).send("Foi encontrado um user com mesmo email");
+            res.status(400).json({
+                error: "Foi encontrado um user com mesmo email",
+            });
         }
-
-        console.log(userName, email, password);
 
         const user = await User.create({
             userName,
@@ -26,7 +28,15 @@ module.exports = {
             password,
             userType,
         });
-        return res.json(user);
+        const token = jwt.sign(
+            {
+                userName,
+                userType: user.userType,
+            },
+            "secret"
+        );
+        res.cookie("token", token);
+        res.status(200).json({ token: token });
     },
     async login(req, res) {
         const { userName, password } = req.body;
