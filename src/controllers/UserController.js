@@ -51,8 +51,7 @@ module.exports = {
             },
             "secret"
         );
-        console.log("token", token);
         res.cookie("token", token);
-        res.end();
+        res.status(200).json({ token: token });
     },
 };
