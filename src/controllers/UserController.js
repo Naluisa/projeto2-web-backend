@@ -13,12 +13,12 @@ module.exports = {
 
         if (users.filter((user) => user.userName === userName).length) {
             return res.status(400).json({
-                error: "Foi encontrado um user com mesmo login",
+                error: "Nome de usuário já existente.",
             });
         }
         if (users.filter((user) => user.email === email).length) {
             return res.status(400).json({
-                error: "Foi encontrado um user com mesmo email",
+                error: "E-mail já cadastrado.",
             });
         }
 
@@ -51,7 +51,7 @@ module.exports = {
         }
 
         if (user.password !== password) {
-            return res.status(400).json({ error: "Senha nao bate" });
+            return res.status(400).json({ error: "Senha incorreta" });
         } else {
             const token = jwt.sign(
                 {
