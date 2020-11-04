@@ -22,8 +22,7 @@ const corsOptions = {
     origin: /(yuki\-hirako\.github\.io\/projeto2\-web).*/,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
-    allowedHeaders:
-        "Access-Control-Allow-Credentials, Access-Control-Allow-Origin",
+    allowedHeaders: "Content-Type, Authorization, X-Requested-With",
 };
 
 app.use(cors(corsOptions));
