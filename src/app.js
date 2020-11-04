@@ -19,10 +19,7 @@ mongoose.connect(
 
 app.use(express.json());
 const corsOptions = {
-    origin: [
-        "https://yuki-hirako.github.io/projeto2-web/",
-        "https://yuki-hirako.github.io/",
-    ],
+    origin: "https://yuki-hirako.github.io",
     credentials: true,
 };
 
