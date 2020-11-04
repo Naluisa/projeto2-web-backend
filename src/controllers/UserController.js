@@ -7,6 +7,7 @@ module.exports = {
 
         if (!userName || !email || !password) {
             res.status(400).json({ error: "Preencha todos os campos" });
+            res.end();
         }
 
         const users = await User.find({}).exec();
@@ -15,11 +16,13 @@ module.exports = {
             res.status(400).json({
                 error: "Foi encontrado um user com mesmo login",
             });
+            res.end();
         }
         if (users.filter((user) => user.email === email).length) {
             res.status(400).json({
                 error: "Foi encontrado um user com mesmo email",
             });
+            res.end();
         }
 
         const user = await User.create({
@@ -42,16 +45,19 @@ module.exports = {
         const { userName, password } = req.body;
         if (!userName || !password) {
             res.status(400).json({ error: "Preencha todos os campos" });
+            res.end();
         }
 
         const user = await User.findOne({ userName });
 
         if (!user) {
             res.status(400).json({ error: "Usuário nao encontrado" });
+            res.end();
         }
 
         if (user.password !== password) {
             res.status(400).json({ error: "Senha nao bate" });
+            res.end();
         } else {
             const token = jwt.sign(
                 {
