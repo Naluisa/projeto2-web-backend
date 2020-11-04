@@ -21,6 +21,7 @@ app.use(express.json());
 const corsOptions = {
     origin: /(yuki\-hirako\.github\.io\/projeto2\-web).*/,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
 };
 
 app.use(cors(corsOptions));
