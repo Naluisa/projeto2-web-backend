@@ -68,7 +68,7 @@ module.exports = {
     async verify(req, res) {
         const token = req.cookies.token;
         console.log("token: ", token);
-        console.log("cookies: ", req.cookies);
+        console.log("cookies: ", req.signedCookies);
 
         if (!token) return res.status(401).json({ error: "Access Denied" });
 
