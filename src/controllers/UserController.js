@@ -66,9 +66,7 @@ module.exports = {
     },
 
     async verify(req, res) {
-        const token = req.cookies.token;
-        console.log("req: ", req.headers["x-xsrf-token"]);
-        console.log("cookies: ", req.signedCookies);
+        const token = req.headers["x-xsrf-token"];
 
         if (!token) return res.status(401).json({ error: "Access Denied" });
 
