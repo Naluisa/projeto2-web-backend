@@ -23,14 +23,11 @@ const corsOptions = {
         "https://yuki-hirako.github.io/projeto2-web/",
         "https://yuki-hirako.github.io/",
     ],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
-    allowedHeaders: "Content-Type, Authorization, X-Requested-With",
 };
 
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.use(cookieParser());
 app.use(routs);
 
 app.listen(port, () => {
